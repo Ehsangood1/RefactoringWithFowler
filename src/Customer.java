@@ -26,10 +26,8 @@ class Customer {
             //determine amounts for each line
             thisAmount = each.calculateRentalAmount();
             // add frequent renter points
-            frequentRenterPoints ++;
-            // add bonus for a two day new release rental
-            if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1) 
-                frequentRenterPoints ++;
+            frequentRenterPoints += calculateFrequentRenterPoints(each);
+
             //show figures for this rental
             result += "\t" + each.getMovie().getTitle()+ "\t" + "\t" + each.getDaysRented() + "\t" + String.valueOf(thisAmount) + "\n";
             totalAmount += thisAmount;
@@ -43,6 +41,14 @@ class Customer {
     private String createRentalRecordHeader() {
         return "Rental Record for " + this.getName() + "\n" +
                "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
+    }
+    
+    private int calculateFrequentRenterPoints(Rental rental) {
+        int points = 1;
+        if (rental.getMovie().getPriceCode() == Movie.NEW_RELEASE && rental.getDaysRented() > 1) {
+            points++;
+        }
+        return points;
     }
     
 
