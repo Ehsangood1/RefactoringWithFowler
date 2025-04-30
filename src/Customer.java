@@ -21,10 +21,11 @@ class Customer {
         String result = createRentalRecordHeader();
 
         while (enum_rentals.hasMoreElements()) {
-            double thisAmount = 0;
+            //get each rental
             Rental each = (Rental) enum_rentals.nextElement();
-            //determine amounts for each line
-            thisAmount = each.calculateRentalAmount();
+            double thisAmount = each.calculateRentalAmount();;
+            
+            
             // add frequent renter points
             frequentRenterPoints += calculateFrequentRenterPoints(each);
 
