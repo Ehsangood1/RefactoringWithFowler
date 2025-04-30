@@ -18,8 +18,7 @@ class Customer {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
         Enumeration enum_rentals = rentals.elements();	    
-        String result = "Rental Record for " + this.getName() + "\n";
-        result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
+        String result = createRentalRecordHeader();
 
         while (enum_rentals.hasMoreElements()) {
             double thisAmount = 0;
@@ -40,6 +39,12 @@ class Customer {
         result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
         return result;
     }
+
+    private String createRentalRecordHeader() {
+        return "Rental Record for " + this.getName() + "\n" +
+               "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
+    }
+    
 
     
 
